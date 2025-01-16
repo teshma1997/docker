@@ -1,19 +1,22 @@
 # Use Ubuntu as the base image
 FROM ubuntu:20.04
 
-# Set environment variables
-ENV CATALINA_HOME /usr/local/tomcat
+# Set environment variables (fixed syntax)
+ENV CATALINA_HOME=/usr/local/tomcat
 ENV PATH=$CATALINA_HOME/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Set system timezone to UTC to avoid "invalid release" errors
+RUN apt-get update && apt-get install -y tzdata \
+    && ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime \
+    && dpkg-reconfigure -f noninteractive tzdata \
+    && apt-get clean
+
 # Install necessary packages and Java
 RUN apt-get update && apt-get install -y \
-    tzdata \
     openjdk-17-jdk \
     curl \
     unzip \
-    && ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime \
-    && dpkg-reconfigure -f noninteractive tzdata \
     && apt-get clean
 
 # Download and extract Apache Tomcat
