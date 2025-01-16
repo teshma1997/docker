@@ -5,8 +5,8 @@ FROM ubuntu:20.04
 ENV CATALINA_HOME=/usr/local/tomcat
 ENV PATH=$CATALINA_HOME/bin:$PATH
 
-# Install necessary packages
-RUN apt-get update && apt-get install -y \
+# Install necessary packages and bypass time validation
+RUN apt-get update --allow-releaseinfo-change && apt-get install -y \
     openjdk-11-jdk \
     curl \
     unzip \
