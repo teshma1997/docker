@@ -9,7 +9,7 @@ ENV PATH=$CATALINA_HOME/bin:$PATH
 RUN apt-get update && apt-get install -y \
     curl \   # Install curl
    # unzip \  # Install unzip
-    vim \    # Install vim
+    #vim \    # Install vim
     && apt-get clean
 
 # Download and install Apache Tomcat
