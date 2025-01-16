@@ -5,21 +5,19 @@ FROM ubuntu:20.04
 ENV CATALINA_HOME=/usr/local/tomcat
 ENV PATH=$CATALINA_HOME/bin:$PATH
 
-# Install necessary packages and bypass time validation
-RUN apt-get update --allow-releaseinfo-change && apt-get install -y \
-    openjdk-11-jdk \
-    curl \
-    unzip \
+# Install necessary packages (replace openjdk-11-jdk with other packages)
+RUN apt-get update && apt-get install -y \
+    nginx \                # Install nginx
+    curl \                 # Install curl
+    unzip \                # Install unzip
+    vim \                  # Install vim
     && apt-get clean
 
-# Download and extract Apache Tomcat
-RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.34/bin/apache-tomcat-10.1.34.tar.gz \
-    && mkdir -p $CATALINA_HOME \
-    && tar xvf apache-tomcat-10.1.34.tar.gz --strip-components=1 -C $CATALINA_HOME \
-    && rm apache-tomcat-10.1.34.tar.gz
+# Copy custom configuration files, if necessary
+# COPY my_custom_file /path/to/container/
 
-# Expose Tomcat default port
-EXPOSE 8080
+# Expose HTTP port for nginx
+EXPOSE 80
 
-# Start Tomcat
-CMD ["catalina.sh", "run"]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
