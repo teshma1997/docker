@@ -5,6 +5,9 @@ FROM ubuntu:20.04
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
 
+# Sync system time (in case time issues cause the apt-get update to fail)
+RUN apt-get install -y ntpdate && ntpdate pool.ntp.org
+
 # Check if Java is already installed; if not, install OpenJDK 11
 RUN dpkg -l | grep -i openjdk || apt-get update && apt-get install -y \
     openjdk-11-jdk \
