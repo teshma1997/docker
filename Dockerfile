@@ -16,7 +16,7 @@ ENV PATH $CATALINA_HOME/bin:$PATH
 
 RUN apt-get update && apt-get install -y \
 
-    openjdk-11-jdk \
+    openjdk-17-jdk \
 
     curl \
 
