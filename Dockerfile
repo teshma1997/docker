@@ -8,7 +8,7 @@ ENV PATH=$CATALINA_HOME/bin:$PATH
 # Install necessary packages
 RUN apt-get update && apt-get install -y \
     curl \   # Install curl
-    unzip \  # Install unzip
+   # unzip \  # Install unzip
     vim \    # Install vim
     && apt-get clean
 
