@@ -9,7 +9,9 @@ ENV CATALINA_HOME=/usr/local/tomcat
 ENV PATH=$CATALINA_HOME/bin:$PATH
 
 # Install necessary packages and Java
-RUN apt-get install -y ntpdate && ntpdate pool.ntp.org
+#RUN apt-get install -y ntpdate && ntpdate pool.ntp.org
+RUN apt-get update && apt-get install -y ntp
+RUN ntpdate pool.ntp.org
 
 RUN apt-get update && apt-get install -y \
 
