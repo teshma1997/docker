@@ -1,5 +1,5 @@
 # Use Ubuntu as the base image
-FROM ubuntu:Latest
+FROM ubuntu:latest
 
 # Set environment variables
 ENV CATALINA_HOME=/usr/local/tomcat
